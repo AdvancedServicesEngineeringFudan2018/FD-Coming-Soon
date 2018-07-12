@@ -1,4 +1,4 @@
-# FD-To-Hard-To-Find-A-Name
+# FD-Too-Hard-To-Find-A-Name
 
 > Hu Chenglong [[@sonnyhcl](github.com/sonnyhcl)]
 >
