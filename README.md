@@ -8,6 +8,8 @@ Hu Chenglong [[@sonnyhcl](github.com/sonnyhcl)]
 
 Chen Xi [[@iamcxnoguigan](github.com/iamcxnoguigan)]
 
+Teddy Mao [[@luvletter](github.com/luvletter)]
+
 ## Empathize
 
 - If you implement the scenario, who would be your customers?
@@ -20,7 +22,7 @@ Chen Xi [[@iamcxnoguigan](github.com/iamcxnoguigan)]
 
 ## Ideate
 
-- scenario
+- Scenario
 
   - Didi open data provides us one way to measure the traffic around subway station. We can build a heatmap in different time scale to show the traffic in POI. Here our POI is subway station.
 - Possible solutions
