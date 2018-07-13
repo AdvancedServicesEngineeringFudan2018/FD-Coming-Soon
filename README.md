@@ -1,6 +1,6 @@
-## Heapmap around subway station
+# Accessibility Heatmap over Residence
 
-Considering changing to another scenario since the applyment for didi open data needs one week to check...
+Showing the accessibility heatmap and candidate list.
 
 ## Author
 
@@ -12,31 +12,33 @@ Teddy Mao [[@luvletter](github.com/luvletter)]
 
 ## Empathize
 
-- If you implement the scenario, who would be your customers?
-  - People who want to schedule their time to subway will be our customers.
+- If you want to rent a house, where would you like to choose?
+  - Of course, convenient transportation is critical.
 
 ## Define
 
 - What do your users need?
-  - People may want to know the traffic flow before they schedule their time to get subway. They may want to avoid the human traffic.
+  - People may want to know the transportation about, for example, know how long will take for start from his residence in Shanghai.
 
 ## Ideate
 
 - Scenario
+  - We are trying to divided the city into x by y cells. Using bus and metro line data to estimate time to spend from one to another, and trying to classify them as a block. 
 
-  - Didi open data provides us one way to measure the traffic around subway station. We can build a heatmap in different time scale to show the traffic in POI. Here our POI is subway station.
 - Possible solutions
+  - Bus line and metro line information is accessible to public and can be fetch by [8684](http://www.8684.cn/). Full metadata is also accessible from [FourSquare API](https://developer.foursquare.com/places-api)
 
-  - We can know the start point and end point from didi dataset and we can plot it as heatmap using amap API [lbs.amap.com](lbs.amap.com). We also want to add dataset of shared bicycles to rich our datasets and enhance our result. 
 - Key involved stakeholders
+  - 8864
+  - Foursquare
+  - OpenStreetMaps
 
-  - Amap company
-  - Ofo company or Mobike company
 - Key metrics for evaluating
-  - the congestion degree predicted using didi datasets or using mobike datasets
-  - the matching degree of above two
+  - The precision of the estimation of ETA and the candidate list.
+  - The resolution of the heatmap.
+
 - Similar or related scenarios
-  - car traffic congestion in big cities.
+  - The place of interest recommendation on Airbnb
 
 ## Prototype
 
@@ -44,4 +46,4 @@ Prototype as a website.
 
 ## Test
 
-Choose 20 subway stations and evaluating the congestion degree predicted using didi datasets or using mobike datasets. 
+Create the heatmap for every Shanghai University.
