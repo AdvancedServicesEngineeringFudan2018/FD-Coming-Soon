@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import requests
 import bs4
 import urllib.parse
@@ -7,7 +8,7 @@ from secret import *
 
 
 def get_lines_stations():
-    url = 'http://%s.8684.cn' % city
+    url = f'http://{city}.8684.cn'
     html = requests.get(url, headers=headers)
     soup = bs4.BeautifulSoup(html.text, 'lxml')
     links_number = soup.find('div', class_='bus_kt_r1').find_all('a')
@@ -37,19 +38,20 @@ def get_lines_stations():
                         line_info[line_name] = stations
                 lines_stations.update(line_info)
             except Exception:
-                print("[info] some error occur during get the info of line %s" % line_name)
+                print(f"[info] some error occur during get the info of line {line_name}")
                 continue
-            print("[info] get the info of line %s, total: %s" % (line_name, len(lines_stations)))
-        with open("data/lines_stations_%s.json" % city, "w", encoding='utf-8') as f:
+            print(f"[info] get the info of line {line_name}, total: {len(lines_stations)}")
+        with open(f"data/lines_stations_{city}.json", "w", encoding='utf-8') as f:
             f.write(str(lines_stations))
 
 
 def get_poi_position(address):
-    query_str = \
-        '/place/v2/search?query=%s&tag=公交车站&city_limit=true&region=%s&output=json&ak=%s' % (address, city_CN, ak)
+    # api documentation
+    # http://lbsyun.baidu.com/index.php?title=webapi/guide/webservice-placeapi
+    query_str = f'/place/v2/search?query={address}&tag=公交车站&city_limit=true&region={city_CN}&output=json&ak={ak}'
     encoded_str = urllib.parse.quote(query_str, safe="/:=&?#+!$,;'@()*[]")
     raw_str = encoded_str + sk
-    sn = hashlib.md5(urllib.parse.quote_plus(64).encode("utf-8")).hexdigest()
+    sn = hashlib.md5(urllib.parse.quote_plus(raw_str).encode("utf-8")).hexdigest()
     url = urllib.parse.quote("http://api.map.baidu.com" + query_str + "&sn=" + sn, safe="/:=&?#+!$,;'@()*[]")
     try:
         response = requests.get(url)
@@ -64,7 +66,7 @@ def get_poi_position(address):
 def get_lines_stations_geometry():
     lines_geometry = []
 
-    with open('data/lines_stations_%s.json' % city, "r", encoding='utf-8') as f:
+    with open(f'data/lines_stations_{city}.json', "r", encoding='utf-8') as f:
         lines = dict(eval(f.read()))
         for name, stations in lines.items():
             line = []
@@ -77,17 +79,16 @@ def get_lines_stations_geometry():
                 line.append(lat_2)
             if len(line):
                 lines_geometry.append(line)
-                print("[info] process line %s, total: %d" % (name, len(lines_geometry)))
+                print(f"[info] process line {name}, total: {len(lines_geometry)}")
 
-    with open('data/lines_geometry_%s.json' % city, 'w', encoding='utf-8') as f:
+    with open(f'data/lines_geometry_{city}.json', 'w', encoding='utf-8') as f:
         f.write(str(lines_geometry))
 
 
 def get_bus_info_baidu(start_lng, start_lat, end_lng, end_lat):
-    global null
-    null = ''
-    query_str = '/direction/v2/transit?origin=%f,%f&destination=%f,%f&ak=%s' % (
-        start_lat, start_lng, end_lat, end_lng, ak)
+    # api documentation
+    # http://lbsyun.baidu.com/index.php?title=webapi/direction-api-v2
+    query_str = f'/direction/v2/transit?origin={start_lat},{start_lng}&destination={end_lat},{end_lng}&ak={ak}'
     encoded_str = urllib.parse.quote(query_str, safe="/:=&?#+!$,;'@()*[]")
     raw_str = encoded_str + sk
     sn = hashlib.md5(urllib.parse.quote_plus(raw_str).encode("utf-8")).hexdigest()
@@ -122,24 +123,25 @@ def get_bus_info_baidu(start_lng, start_lat, end_lng, end_lat):
 
 
 def process_data():
-    with open('data/lines_geometry_%s.json' % city) as f:
+    with open(f'data/lines_geometry_{city}.json') as f:
         lines = list(eval(f.read()))
     lines_data = []
     for line in lines:
         start_lng, start_lat = line[0], line[1]
         end_lng, end_lat = line[2], line[3]
         route = get_bus_info_baidu(start_lng, start_lat, end_lng, end_lat)
-        print("[info] process data [%f, %f]-[%f, %f], total: %d" % (
-            start_lng, start_lat, end_lng, end_lat, len(lines_data)))
+        print(f"[info] process data [{start_lng}, {start_lat}]-[{end_lng}, {end_lat}], total: {len(lines_data))}")
         if route and len(route) > 2:
             lines_data.append(route)
 
-    with open('data/lines_data_%s.json' % city, 'w') as f:
+    with open(f'data/lines_data_{city}.json', 'w') as f:
         f.write(str(lines_data))
+    return len(lines_data)
 
 
 if __name__ == '__main__':
     print('start...')
-    # get_lines_stations()
+    get_lines_stations()
     get_lines_stations_geometry()
-    process_data()
+    result_length = process_data()
+    print(f'done... result_length={result_length}')
