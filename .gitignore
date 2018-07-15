@@ -24,4 +24,5 @@ hs_err_pid*
 *.bak
 
 ############################
+__pycache__/
 secret.py
