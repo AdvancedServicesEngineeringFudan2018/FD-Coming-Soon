@@ -1,10 +1,13 @@
 # Quality of Data
+> Elaborate more!!!
 ## Possible Incidents
 - It needs plenty of queries and of course a lot of time to query amap url for enough possible points getting real-time life cycles.
 
 ## Elasticity Rules
 - Queries should be produced in batch or paralellly rather than serially.
+    -   It can help reduce the burden of our servers.
 - Results should be rendered asynchronously. Fetch one result and render one.
+    -   It can make users feel much better in a simple way rather than adding more servers.
 
 ## QoD Metrics
 - Q: **Domain-specific metrics**
