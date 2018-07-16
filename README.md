@@ -51,3 +51,7 @@ Create the heatmap for every Shanghai University.
 ## Reference
 - [life circle report by Amap](http://report.amap.com/mobile/life.do)
 - [the vein of the city](https://www.96486d9b.xyz/City-Vein/html/shanghai.html)
+
+# Framwork
+
+![dataflow](./ASEDataflowFramework.png)
