@@ -7,7 +7,7 @@
 - Results should be rendered asynchronously. Fetch one result and render one.
 
 ## QoD Metrics
-- Q: *Domain-specific metrics*
+- Q: **Domain-specific metrics**
     - Need specific tools and expertise for determining metrics
 - A: We assume that life circle is continuous and uninterrupted. So if we wanna know the edge of 20 minutes life cycle, we can first search one point in one direction for 20 minutes distance, and then we have a rough 20 minutes radius. Then we search the ring around the 20 minutes circle. It can help us reduce query times a lot and better use batch query provided by amap.
 
