@@ -1,6 +1,6 @@
 # Quality of Data
 
-## QoD Definition
+## QoD Metrics
 
 - Q: *Domain-specific metrics*
     - Need specific tools and expertise for determining metrics
@@ -12,19 +12,20 @@
 - Q: **Evaluation**
     - Cannot done by software only: humans are required
     - Exact versus inexact evaluation due to big and streaming data
-- A:
+- A: There are some parameters that still need human to define which is better.
 
 -------------
 
 - Q: **Complex integration model**
     - Where to put QoD evaluators and why?
     - How evaluators obtain the data to be evaluated?
-- A:
+- A: QoD is both needed for the input data and output data. For us, our input is the data from amap api and our output data is the feedback of the users.
 
 -------------
 
-- Q: *Impact of QoD evaluation on performance of data analytics workflows*
-- A:
+- Q: **Impact of QoD evaluation on performance of data analytics workflows**
+- A: It can help us reduce a lot when querying using amap api. However, it need much more human attention.
+
 ## Tool
 - [Telegraf](http://www.telegraf.rs/) 
     - store the input evaluation, output and user feedback.
