@@ -4,11 +4,11 @@ Showing the accessibility heatmap and candidate list.
 
 ## Author
 
-Hu Chenglong [[@sonnyhcl](github.com/sonnyhcl)]
+[Chenglong Hu @sonnyhcl](github.com/sonnyhcl)]
 
-Chen Xi [[@iamcxnoguigan](github.com/iamcxnoguigan)]
+[Chen Xi @iamcxnoguigan](github.com/iamcxnoguigan)]
 
-Teddy Mao [[@luvletter](github.com/luvletter)]
+[Teddy Mao @luvletter](github.com/luvletter)]
 
 ## Empathize
 
