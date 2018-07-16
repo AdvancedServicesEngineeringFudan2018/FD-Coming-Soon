@@ -1,26 +1,46 @@
-# Quality of Service
----
+# Quality of Data
 
- Domain-specific metrics
- Need specific tools and expertise for determining
-metrics
- Evaluation
- Cannot done by software only: humans are required
- Exact versus inexact evaluation due to big and streaming data
- Complex integration model
- Where to put QoD evaluators and why?
- How evaluators obtain the data to be evaluated?
- Impact of QoD evaluation on performance of
-data analytics workflows
+## QoD Definition
 
-### Tool
+- Q: *Domain-specific metrics*
+    - Need specific tools and expertise for determining metrics
 
+- A: We assume that life circle is continuous and uninterrupted. So if we wanna know the edge of 20 minutes life cycle, we can first search one point in one direction for 20 minutes distance, and then we have a rough 20 minutes radius. Then we search the ring around the 20 minutes circle. It can help us reduce query times a lot and better use batch query provided by amap.
 
-### Where
+-------------
+
+- Q: **Evaluation**
+    - Cannot done by software only: humans are required
+    - Exact versus inexact evaluation due to big and streaming data
+- A:
+
+-------------
+
+- Q: **Complex integration model**
+    - Where to put QoD evaluators and why?
+    - How evaluators obtain the data to be evaluated?
+- A:
+
+-------------
+
+- Q: *Impact of QoD evaluation on performance of data analytics workflows*
+- A:
+## Tool
+- [Telegraf](http://www.telegraf.rs/) 
+    - store the input evaluation, output and user feedback.
+
+## Where We Use
+
+#### Data Frame
+* The 
+<!-- ew -->
 
 #### 3rd Service Provider
+* Design of APIs: parameters, quantity, output items
+* The update frequency and quality
+* The review score from the provider, like the comment in OpenStreetMaps
 
-#### Logic Output
-
-* Precision versus the real venue.
+#### Output Data
+* Calculate the precision by comparing output data with the real value
+* Receive the user feedback and suggestion
 
