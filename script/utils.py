@@ -4,19 +4,33 @@ import math
 
 class Point:
     def __init__(self, lng=121.47, lat=31.23):
+        """
+
+        :param lng:
+        :param lat:
+        """
         self._lng = lng
         self._lat = lat
 
     @staticmethod
-    def from_str(coor='121.47, 31.23'):
+    def from_lnglat_str(coor='121.47, 31.23'):
+        """
+
+        :param coor: str: longitude, latitude
+        :return:
+        """
         _lng = float(coor.split(",")[0])
         _lat = float(coor.split(",")[1])
         return Point(_lng, _lat)
 
     def __repr__(self):
-        return f"<Point({self._lat}, {self._lng})>"
+        return f"<Point({self._lng}, {self._lat})>"
 
-    def tuple(self):
+    def latlng_tuple(self):
+        """
+
+        :return:
+        """
         return self._lat, self._lng
 
     @property
@@ -51,3 +65,9 @@ class Cell:
     @property
     def color(self):
         return self._color
+
+
+def frange(x, y, interval):
+    while x < y:
+        yield x
+        x += interval

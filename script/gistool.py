@@ -1,33 +1,35 @@
 # -*- coding:utf-8 -*-
 import math
-from geopy.distance import geodesic as distance
+from geopy.distance import geodesic as calculate
 from utils import Point, Cell
 
 
 def calculate_distance_km_between_two_point(pointx: Point, pointy: Point):
     """
-    calculate great-circle distance
-    :param pointx: Point latitude [-90, 90]
-    :param pointy: Point longitude [-180, 180]
+    calculate distance in km
+    :param pointx: Point
+    :param pointy: Point
     :return:
     """
-    return distance(pointx.tuple(), pointy.tuple()).kilometers
+    return calculate(pointx.latlng_tuple(), pointy.latlng_tuple()).kilometers
 
 
 def convert_distance_to_lnglat(point: Point, distance=Cell.CELL_RADIUS, angle=60.0):
     """
-    1° in latitude is 111 km
-    1° in longitude is 111*cos(angle) km
+    Latitude: 1 deg = 110.574 km
+    Longitude: 1 deg = 111.320*cos(latitude) km
     :param point:
     :param distance:
     :param angle:
     :return:
     """
-    lat_distance = distance * (1 + math.sin(angle))
-    lng_distance = math.sqrt(distance)
+    lng_distance = distance * math.cos(angle * math.pi / 180)
+    lat_distance = distance * math.sin(angle * math.pi / 180)
+    # print(lng_distance, lat_distance)
 
-    delta_lng = lng_distance * math.sin(angle * math.pi / 180) / (111 * math.cos(point.latitude * math.pi / 180))
-    delta_lat = lat_distance * math.cos(angle * math.pi / 180) / 111
+    delta_lng = lng_distance / (111 * math.cos(point.latitude * math.pi / 180))
+    delta_lat = lat_distance / 111
+    # print(delta_lng, delta_lat)
 
     return Point(point.longitude + delta_lng, point.latitude + delta_lat)
 
@@ -49,9 +51,10 @@ def get_cell_below(point: Point):
 
 
 if __name__ == "__main__":
-    print(calculate_distance_km_between_two_point(Point(), Point()))
+    res = calculate_distance_km_between_two_point(Point(121, 31), Point(120, 30))
+    print(res)
+    print(convert_distance_to_lnglat(Point(120, 30), distance=res, angle=45))
     print(get_upper_right_cell(Point()))
     print(get_bottom_right_cell(Point()))
     print(get_cell_above(Point()))
     print(get_cell_below(Point()))
-
