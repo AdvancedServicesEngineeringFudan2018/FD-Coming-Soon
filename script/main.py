@@ -40,18 +40,30 @@ def get_city_cells(_polylines: [Point]):
     # print(left, right, top, bottom)
     # print(calculate_distance_km_between_two_point(left, right))
 
-    longitude_precision = convert_distance_to_lnglat(
-        Point(0, 0), distance=Cell.CELL_RADIUS * math.sqrt(3), angle=0).longitude
-    latitude_precision = convert_distance_to_lnglat(
-        Point(0, 0), distance=Cell.CELL_RADIUS * 3, angle=90).latitude
+    longitude_precision = convert_distance_to_lnglat(distance=Cell.CELL_RADIUS * math.sqrt(3), angle=0).longitude
+    latitude_precision = convert_distance_to_lnglat(distance=Cell.CELL_RADIUS * 3, angle=90).latitude
+    offset = convert_distance_to_lnglat(distance=Cell.CELL_RADIUS * math.sqrt(3), angle=60)
     # print(left.longitude, right.longitude + longitude_precision, longitude_precision)
     # print(bottom.latitude, top.latitude + latitude_precision, latitude_precision)
+    # print(offset)
 
     return [
-        Cell(Point(i, j))
-        for i in np.arange(left.longitude, right.longitude + longitude_precision, longitude_precision)
-        for j in np.arange(bottom.latitude, top.latitude + latitude_precision, latitude_precision)
-    ]
+               Cell(Point(i, j))
+               for i in np.arange(left.longitude,
+                                  right.longitude + longitude_precision,
+                                  longitude_precision)
+               for j in np.arange(bottom.latitude,
+                                  top.latitude + latitude_precision,
+                                  latitude_precision)
+           ] + [
+               Cell(Point(i, j))
+               for i in np.arange(left.longitude + offset.longitude,
+                                  right.longitude + offset.longitude + longitude_precision,
+                                  longitude_precision)
+               for j in np.arange(bottom.latitude + offset.latitude,
+                                  top.latitude + offset.latitude + latitude_precision,
+                                  latitude_precision)
+           ]
 
 
 if __name__ == "__main__":
@@ -61,4 +73,4 @@ if __name__ == "__main__":
     # print(*polylines, sep="\n")
 
     cells = get_city_cells(polylines)
-    # print(*cells, sep="\n")
+    print(*cells, sep="\n")

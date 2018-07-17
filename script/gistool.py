@@ -14,7 +14,7 @@ def calculate_distance_km_between_two_point(pointx: Point, pointy: Point):
     return calculate(pointx.latlng_tuple(), pointy.latlng_tuple()).kilometers
 
 
-def convert_distance_to_lnglat(point: Point, distance=Cell.CELL_RADIUS, angle=60.0):
+def convert_distance_to_lnglat(point=Point(0, 0), distance=Cell.CELL_RADIUS, angle=60.0):
     """
     Latitude: 1 deg = 110.574 km
     Longitude: 1 deg = 111.320*cos(latitude) km
