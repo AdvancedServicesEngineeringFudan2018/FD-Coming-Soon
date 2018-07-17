@@ -24,15 +24,19 @@ headers = {
     'content-type': 'application/json'
 }
 
-# 高德API
-# 调用量上限（次/日）    并发量上限（次/秒）
-# 2000                50
-key = '5f1f377483e342c20fc4005f31a436a8'
+"""
+We don't need to worry about the apikey leak in github.
+Since I find these keys in github directly and it won't leak any message on me.
+"""
+# Map API for AMAP
 rootURLA = "https://restapi.amap.com"
+# Limit (times per day)     concurrency(times per second)
+# 2000                      50
+key = '926a17cc977ea70424c8569cad4f720d'
 
-# 百度地图API
+# Map API for Baidu
+rootURLB = "http://api.map.baidu.com"
 # Access Key ID
 ak = '08eUG0hbUTzFrCFyF2Bn6tSQ7UD0cCaH'
 # Secret Access Key
 sk = '4Gzbk6HSzMHkWjjXliEOGM7ZAVvpqg0U'
-rootURLB = "http://api.map.baidu.com"

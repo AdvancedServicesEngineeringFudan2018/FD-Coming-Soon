@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 import requests
-import pprint
 import hashlib
+import json
 import urllib.parse
 from config import *
 
@@ -29,17 +29,13 @@ def get_from_amap(query_str):
     return _get_from_url_return_json(url)
 
 
-def get_from_baidu(query_str):
+def post_to_amap(query_str, data):
     """
-    
+
     :param query_str:
-    example: f"/direction/v2/transit?origin=40.056878,116.30815&destination=31.222965,121.505821&ak={ak}"
+    example: f"/v3/ip?ip=202.120.224.26&output=json&key={key}"
+    :param data:
     :return:
     """
-    encoded_str = urllib.parse.quote(query_str, safe="/:=&?#+!$,;'@()*[]")
-    raw_str = encoded_str + sk
-    sn = hashlib.md5(urllib.parse.quote_plus(raw_str).encode("utf-8")).hexdigest()
-    url = urllib.parse.quote(rootURLB + query_str + "&sn=" + sn, safe="/:=&?#+!$,;'@()*[]")
-    return _get_from_url_return_json(url)
-
-
+    url = rootURLA + query_str
+    return _post_data_to_url_return_json(url, data=json.dumps(data))

@@ -3,10 +3,10 @@ import pprint
 from config import *
 import utils
 '''
-高德批量请求接口的API文档有误，照着跑不出
+There is something wrong in AMap Map API documentation.
+we got {'info': 'INVALID_BATCH_PARAM', 'infocode': '20005', 'status': '0'} as documentation told.
 '''
 if __name__ == "__main__":
-    
     query_str = f"/v3/batch?key={key}"
     payload = {
         "ops": [
@@ -18,4 +18,4 @@ if __name__ == "__main__":
             }
         ]
     }
-    pprint.pprint(utils.get_from_amap(query_str))
+    pprint.pprint(utils.post_to_amap(query_str, payload))
