@@ -1,5 +1,7 @@
 # -*- coding:utf-8 -*-
-import pprint
-import map_batch_api
+from config import *
+from thrall.amap import session
 
-mapBatchAPI = map_batch_api.mapBatchAPI()
+r = session.riding('116.434307,39.90909', destination=(116.434446,39.90816))
+print(r.data)
+

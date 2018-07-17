@@ -25,7 +25,7 @@ headers = {
 }
 
 """
-We don't need to worry about the apikey leak in github.
+We don't need to worry about the api key leak in github.
 Since I find these keys in github directly and it won't leak any message on me.
 """
 # Map API for AMAP

@@ -54,13 +54,17 @@ Create the heatmap for every Shanghai University.
 
 ## Missions
 ### section 1 : basic
-1. find out the usage of AMAP -> cx
+1. find out the usage of AMAP, almost frontend -> cx
 2. verify the usage of AMAP batch API -> hcl
 3. design the iterate algorithms -> mct
 ### section 2 : 3rd party
-1. swarm api
+1. swarm api: both frontend and backend
 2. find poi using Meituan
+### section 3 : more if possible
+1. house price and renting price => to generate house heatmap
+2. combine two heatmap
 3. interact between two people who want to find place for specific purpose. Find the overlap of their transportation cycle and find the result in POI.
+
 # Quality of Data
 > Elaborate more!!!
 ## Possible Incidents
