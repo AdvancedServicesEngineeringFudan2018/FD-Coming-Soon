@@ -52,6 +52,15 @@ Create the heatmap for every Shanghai University.
 - [life circle report by Amap](http://report.amap.com/mobile/life.do)
 - [the vein of the city](https://www.96486d9b.xyz/City-Vein/html/shanghai.html)
 
-# Framwork
+## Missions
+### section 1 : basic
+1. find out the usage of AMAP -> cx
+2. verify the usage of AMAP batch API -> hcl
+3. design the iterate algorithms -> mct
+### section 2 : 3rd party
+1. swarm api
+2. find poi using Meituan
+3. interact between two people who want to find place for specific purpose. Find the overlap of their transportation cycle and find the result in POI.
 
+# Framwork
 ![dataflow](./ASEDataflowFramework.png)
