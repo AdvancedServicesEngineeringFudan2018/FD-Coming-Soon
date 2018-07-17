@@ -28,3 +28,11 @@ headers = {
 # 调用量上限（次/日）    并发量上限（次/秒）
 # 2000                50
 key = '5f1f377483e342c20fc4005f31a436a8'
+rootURLA = "https://restapi.amap.com"
+
+# 百度地图API
+# Access Key ID
+ak = '08eUG0hbUTzFrCFyF2Bn6tSQ7UD0cCaH'
+# Secret Access Key
+sk = '4Gzbk6HSzMHkWjjXliEOGM7ZAVvpqg0U'
+rootURLB = "http://api.map.baidu.com"
