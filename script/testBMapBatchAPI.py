@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-import requests
 import hashlib
 import urllib.parse
 from config import *
