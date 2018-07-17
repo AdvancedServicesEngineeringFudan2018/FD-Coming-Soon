@@ -1,17 +1,18 @@
 # -*- coding:utf-8 -*-
 import requests
+import pprint
 import hashlib
 import urllib.parse
 from config import *
 
 
-def get_from_url_return_json(url):
+def _get_from_url_return_json(url):
     response = requests.get(url, headers=headers)
     logger.debug(response.json())
     return response.json()
 
 
-def post_data_to_url_return_json(url, data):
+def _post_data_to_url_return_json(url, data):
     response = requests.post(url, data=data, headers=headers)
     logger.debug(response.json())
     return response.json()
@@ -25,7 +26,7 @@ def get_from_amap(query_str):
     :return:
     """
     url = rootURLA + query_str
-    return get_from_url_return_json(url)
+    return _get_from_url_return_json(url)
 
 
 def get_from_baidu(query_str):
@@ -39,4 +40,6 @@ def get_from_baidu(query_str):
     raw_str = encoded_str + sk
     sn = hashlib.md5(urllib.parse.quote_plus(raw_str).encode("utf-8")).hexdigest()
     url = urllib.parse.quote(rootURLB + query_str + "&sn=" + sn, safe="/:=&?#+!$,;'@()*[]")
-    return get_from_url_return_json(url)
+    return _get_from_url_return_json(url)
+
+
