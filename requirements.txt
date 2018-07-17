@@ -1,0 +1,9 @@
+Werkzeug==0.12.2
+Flask==0.12.2
+requests==2.14.2
+Shapely==1.6.4.post1
+geopy==1.15.0
+numpy==1.12.1
+functools32==3.2.3-2
+future==0.16.0
+six==1.11.0

@@ -1,7 +1,7 @@
 # -*- coding:utf-8 -*-
 import math
 from geopy.distance import geodesic as calculate
-from utils import Point, Cell
+from webapp.utils import Point, Cell
 
 
 def calculate_distance_km_between_two_point(pointx: Point, pointy: Point):

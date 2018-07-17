@@ -1,8 +1,8 @@
 # -*- coding:utf-8 -*-
 import numpy as np
-from thrall.amap import session
-from thrall.amap.consts import ExtensionFlag
-from gistool import *
+from webapp.thrall.amap import session
+from webapp.thrall.amap.consts import ExtensionFlag
+from webapp.gistool import *
 
 
 def get_city_polylines(keywords: str):
@@ -55,7 +55,8 @@ def get_city_cells(_polylines: [Point]):
                for j in np.arange(bottom.latitude,
                                   top.latitude + latitude_precision,
                                   latitude_precision)
-           ] + [
+           ] + \
+           [
                Cell(Point(i, j))
                for i in np.arange(left.longitude + offset.longitude,
                                   right.longitude + offset.longitude + longitude_precision,
@@ -73,4 +74,4 @@ if __name__ == "__main__":
     # print(*polylines, sep="\n")
 
     cells = get_city_cells(polylines)
-    print(*cells, sep="\n")
+    # print(*cells, sep="\n")

@@ -54,6 +54,16 @@ class Cell:
     def __repr__(self):
         return f"<Cell({self._center}, {self._radius}, {self._color})>"
 
+    def items(self):
+        return {
+            "center": {
+                "latitude": self._center.latitude,
+                "longitude": self._center.longitude
+            },
+            "color": self.color,
+            "radius": self._radius
+        }
+
     @property
     def center(self):
         return self._center
