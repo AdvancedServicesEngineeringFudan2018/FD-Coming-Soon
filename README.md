@@ -8,7 +8,7 @@ Showing the accessibility heatmap and candidate list.
 
 [Chen Xi @iamcxnoguigan](github.com/iamcxnoguigan)
 
-[Teddy Mao @luvletter](github.com/luvletter)
+[Mao Chengtian @luvletter](github.com/luvletter)
 
 ## Empathize
 
