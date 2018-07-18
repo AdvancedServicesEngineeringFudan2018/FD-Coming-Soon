@@ -102,7 +102,7 @@ Create the heatmap for every Shanghai University.
 
 -------------
 
-- Q&A: **Complex integration model**
+- Q: **Complex integration model**
   - Where to put QoD evaluators and why?
   - How evaluators obtain the data to be evaluated?
 - A: QoD is both needed for the input data and output data. For us, our input is the data from Amap API and our output data is the feedback of the users.
