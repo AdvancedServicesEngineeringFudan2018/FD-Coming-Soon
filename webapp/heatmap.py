@@ -11,8 +11,7 @@ from webapp.map_batch_api import *
 def get_city_polylines(keywords: str):
     """
 
-    :param keywords: 地名关键词
-    规则：只支持单个关键词语搜索关键词支持：行政区名称、citycode、adcode
+    :param keywords: the keyword of cityname in China in Chinese!!!
     :return:
     """
     result = session.district(keywords, sub_district=0, extensions=ExtensionFlag(1))
@@ -92,22 +91,11 @@ def get_time_to_reach_in_batch(start_point: Point, _cells: [Cell], cityname="021
 
 
 def filter_cells(cells, cityname):
+    # TODO
     pass
 
 
 def filter_results(results):
-    # ret = []
-    # for result in results:
-    #     try:
-    #         if isinstance(result, dict) and \
-    #                 isinstance(result.get('body'), dict) and \
-    #                 result.get('body').get('status') != '0':
-    #             ret.append(result)
-    #     except Exception as e:
-    #         print(result)
-    #         print(str(e))
-    #         raise e
-    # return ret
     return [
         result
         for result in results
@@ -127,5 +115,5 @@ if __name__ == "__main__":
     # print(*cells, sep="\n")
 
     results = get_time_to_reach_in_batch(Point('121.47, 31.23'), cells)
-    results = filter_results(results)
-    print(*results, sep="\n")
+    # results = filter_results(results)
+    # print(*results, sep="\n")
