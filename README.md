@@ -23,15 +23,15 @@ Showing the accessibility heatmap and candidate list.
 ## Ideate
 
 - Scenario
-  - We are trying to divided the city into x by y cells. Using bus and metro line data to estimate time to spend from one to another, and trying to classify them as a block. 
+  - We are trying to divided the city into x by y cells. Using bus and metro line data to estimate time to spend from one to another, and trying to classify them as a block.
 
 - Possible solutions
-  - Bus line and metro line information is accessible to public and can be fetch by [8684](http://www.8684.cn/). Full metadata is also accessible from [FourSquare API](https://developer.foursquare.com/places-api)
+  - We use Amap ETA API to get the data and draw the different colors(which stand for time in different range). Then add 3rd Po I information.
 
 - Key involved stakeholders
-  - 8864
-  - Foursquare
-  - OpenStreetMaps
+  - Amap
+  - HousePricing
+  - Meituan PoI
 
 - Key metrics for evaluating
   - The precision of the estimation of ETA and the candidate list.
@@ -50,33 +50,34 @@ Create the heatmap for every Shanghai University.
 
 ## Reference
 
-- [life circle report by Amap](http://report.amap.com/mobile/life.do)
+- [life circle report by Amap](http://report.Amap.com/mobile/life.do)
 - [the vein of the city](https://www.96486d9b.xyz/City-Vein/html/shanghai.html)
 
 ## Missions
 
-### section 1 : basic
+### Section 1 : Basic Heatmap
 
-1. find out the usage of AMAP, almost frontend -> cx
-2. verify the usage of AMAP batch API -> hcl
+1. find out the usage of Amap, almost frontend -> cx
+2. verify the usage of Amap batch API -> hcl
 3. design the iterate algorithms -> mct
 
-### section 2 : 3rd party
+### Section 2 : Third-Party Data
 
-1. swarm api: both frontend and backend (**canceled because this API is disabled**)
-2. find poi using Meituan
+1. ~~Swarm API: both frontend and backend~~ (**canceled because this API is disabled**)
+2. find PoI using Meituan.
 
-### section 3 : more if possible
+### Section 3 : More features if possible
 
-1. house price and renting price => to generate house heatmap or label
-2. combine two heatmap
-3. interact between two people who want to find place for specific purpose. Find the overlap of their transportation cycle and find the result in POI.
+1. House price and renting price => to generate house heatmap or label from [HousePricing](https://github.com/PENGZhaoqing/HousePricing).
+2. Find other service which provide the real-time friend location.
+3. Interact between two people who want to find place for specific purpose. Find the overlap of their transportation cycle and find the result in PoI.
+4. Store the result every hour so that user can see the change in a period, and it will be possible to forecast the situation later.
 
 ## Quality of Data
 
 > Elaborate more!!!
 
-- It needs plenty of queries and of course a lot of time to query amap url for enough possible points getting real-time life cycles.
+- It needs plenty of queries and of course a lot of time to query Amap url for enough possible points getting real-time life cycles.
 
 ## Elasticity Rules
 
@@ -90,7 +91,7 @@ Create the heatmap for every Shanghai University.
 
 - Q: **Domain-specific metrics**
   - Need specific tools and expertise for determining metrics
-- A: We assume that life circle is continuous and uninterrupted. So if we wanna know the edge of 20 minutes life cycle, we can first search one point in one direction for 20 minutes distance, and then we have a rough 20 minutes radius. Then we search the ring around the 20 minutes circle. It can help us reduce query times a lot and better use batch query provided by amap.
+- A: We assume that life circle is continuous and uninterrupted. So if we wanna know the edge of 20 minutes life cycle, we can first search one PoInt in one direction for 20 minutes distance, and then we have a rough 20 minutes radius. Then we search the ring around the 20 minutes circle. It can help us reduce query times a lot and better use batch query provided by Amap.
 
 -------------
 
@@ -104,12 +105,12 @@ Create the heatmap for every Shanghai University.
 - Q&A: **Complex integration model**
   - Where to put QoD evaluators and why?
   - How evaluators obtain the data to be evaluated?
-- A: QoD is both needed for the input data and output data. For us, our input is the data from amap api and our output data is the feedback of the users.
+- A: QoD is both needed for the input data and output data. For us, our input is the data from Amap API and our output data is the feedback of the users.
 
 -------------
 
 - Q: **Impact of QoD evaluation on performance of data analytics workflows**
-- A: It can help us reduce a lot when querying using amap api. However, it need much more human attention.
+- A: It can help us reduce a lot when querying using Amap API. However, it need much more human attention.
 
 ### Tool
 
@@ -118,7 +119,7 @@ Create the heatmap for every Shanghai University.
 
 ## Where We Use
 
-### 3rd Service Provider
+### Third-Party Service Provider
 
 - Design of APIs: parameters, quantity, output items
 - The update frequency and quality
