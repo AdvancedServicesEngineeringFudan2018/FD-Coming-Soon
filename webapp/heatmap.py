@@ -1,8 +1,11 @@
 # -*- coding:utf-8 -*-
+import time
+
 import numpy as np
 from webapp.thrall.amap import session
 from webapp.thrall.amap.consts import ExtensionFlag
 from webapp.gistool import *
+from webapp.map_batch_api import *
 
 
 def get_city_polylines(keywords: str):
@@ -49,22 +52,69 @@ def get_city_cells(_polylines: [Point]):
 
     return [
                Cell(Point(i, j))
-               for i in np.arange(left.longitude,
-                                  right.longitude + longitude_precision,
+               for i in np.arange(left.longitude + longitude_precision,
+                                  right.longitude,
                                   longitude_precision)
-               for j in np.arange(bottom.latitude,
+               for j in np.arange(bottom.latitude + latitude_precision,
                                   top.latitude + latitude_precision,
                                   latitude_precision)
            ] + \
            [
                Cell(Point(i, j))
                for i in np.arange(left.longitude + offset.longitude,
-                                  right.longitude + offset.longitude + longitude_precision,
+                                  right.longitude + offset.longitude,
                                   longitude_precision)
                for j in np.arange(bottom.latitude + offset.latitude,
-                                  top.latitude + offset.latitude + latitude_precision,
+                                  top.latitude + offset.latitude,
                                   latitude_precision)
            ]
+
+
+def get_time_to_reach_in_batch(start_point: Point, _cells: [Cell], cityname="021"):
+    _map = MapBatchAPI()
+    results = []
+    query_list = []
+    for cell in _cells:
+        query_list.append({
+            "origin": start_point.url_str(),
+            "destination": cell.center.url_str(),
+            "city": cityname,
+            "nightflag": "1",
+            "output": "json"
+        })
+        if len(query_list) == 20:
+            results += _map.get_transit_data(query_list)
+            query_list = []
+            time.sleep(0.5)
+    results += _map.get_transit_data(query_list)
+
+    return results
+
+
+def filter_cells(cells, cityname):
+    pass
+
+
+def filter_results(results):
+    # ret = []
+    # for result in results:
+    #     try:
+    #         if isinstance(result, dict) and \
+    #                 isinstance(result.get('body'), dict) and \
+    #                 result.get('body').get('status') != '0':
+    #             ret.append(result)
+    #     except Exception as e:
+    #         print(result)
+    #         print(str(e))
+    #         raise e
+    # return ret
+    return [
+        result
+        for result in results
+        if isinstance(result, dict) and
+           isinstance(result.get('body'), dict) and
+           result.get('body').get('status') != '0'
+    ]
 
 
 if __name__ == "__main__":
@@ -73,5 +123,9 @@ if __name__ == "__main__":
     polylines = get_city_polylines(city_name)
     # print(*polylines, sep="\n")
 
-    cells = get_city_cells(polylines)
+    cells = get_city_cells(polylines)[:40]
     # print(*cells, sep="\n")
+
+    results = get_time_to_reach_in_batch(Point('121.47, 31.23'), cells)
+    results = filter_results(results)
+    print(*results, sep="\n")

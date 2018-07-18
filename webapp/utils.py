@@ -24,7 +24,7 @@ class Point:
         return Point(_lng, _lat)
 
     def __repr__(self):
-        return f"<Point({self._lng}, {self._lat})>"
+        return f"<Point({self._lng:.6}, {self._lat:.6})>"
 
     def latlng_tuple(self):
         """
@@ -32,6 +32,9 @@ class Point:
         :return:
         """
         return self._lat, self._lng
+
+    def url_str(self):
+        return f"{self._lng:.6},{self._lat:.6}"
 
     @property
     def latitude(self):
@@ -43,7 +46,7 @@ class Point:
 
 
 class Cell:
-    CELL_RADIUS = 3.0
+    CELL_RADIUS = 1.0
     CENTER_TO_EDGE = math.sqrt(3)
 
     def __init__(self, center_point=Point(), radius=CELL_RADIUS, color="red"):

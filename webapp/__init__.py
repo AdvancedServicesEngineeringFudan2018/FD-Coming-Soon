@@ -1,2 +1,2 @@
 # -*- coding: UTF-8 -*-
-from webapp.index import app
+from webapp.url import app

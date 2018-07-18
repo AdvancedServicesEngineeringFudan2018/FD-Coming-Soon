@@ -1,10 +1,66 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>地图展示</title>
+    <link rel="stylesheet" href="/static/css/main.css"/>
+    <style>
+    </style>
+    <script type="text/javascript" src="/static/js/jquery.js"></script>
+    <script type="text/javascript" src="/static/js/maps.js"></script>
+    <script type="text/javascript" src="/static/js/addToolbar.js"></script>
 </head>
 <body>
-
+<div id="container"></div>
+<script type="text/javascript">
+    let map = new AMap.Map('container', {
+        resizeEnable: true,
+        center: [121.459598, 31.227596],
+        zoom: 13,
+        isHotspot: true
+    });
+    let centers = [];
+    $(document).ready(function () {
+        console.log("document ready");
+        $.post("/city_cells", {
+                "keyword": "北京"
+            },
+            function (ret) {
+                for (let i in ret) {
+                    centers.push([ret[i].center.longitude, ret[i].center.latitude])
+                }
+                for (let i = 0; i < centers.length; i++) {
+                    let centerX = centers[i][0];
+                    let centerY = centers[i][1];
+                    const dis = 1;
+                    const earthR = 6371.137;
+                    let x1 = centerX,
+                        y1 = (centerY + 180 * (dis / earthR) / Math.PI),
+                        x2 = centerX + 180 * dis * Math.sin(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        y2 = centerY + 180 * dis * Math.cos(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        x3 = centerX + 180 * dis * Math.sin(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        y3 = centerY - 180 * dis * Math.cos(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        x4 = centerX,
+                        y4 = centerY - 180 * (dis / earthR) / Math.PI,
+                        x5 = centerX - 180 * dis * Math.sin(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        y5 = centerY - 180 * dis * Math.cos(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        x6 = centerX - 180 * dis * Math.sin(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        y6 = centerY + 180 * dis * Math.cos(Math.PI * 60 / 180) / (earthR * Math.PI);
+                    let arr = [[x1, y1], [x2, y2], [x3, y3], [x4, y4], [x5, y5], [x6, y6]];
+                    let polygon = new AMap.Polygon({
+                        path: arr,
+                        strokeColor: "006600",
+                        strokeOpacity: 0.5,
+                        strokeWeight: 3,
+                        fillColor: "#f5deb3",
+                        fillOpacity: 0.35
+                    });
+                    map.add(polygon);
+                }
+            },'json');
+    });
+</script>
 </body>
 </html>
