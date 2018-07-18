@@ -22,7 +22,7 @@ class DistrictRequestParams(BaseRequestParams):
 
     def __init__(self, keyword=None, sub_district=None, page=None, offset=None,
                  extensions=None, filter=None, **kwargs):
-        """ Amap district code basic request param, document ses:
+        """ Amap district code basic request param, doc ses:
         [district](http://lbs.amap.com/api/webservice/guide/api/district)
         """
         self.keyword = keyword

@@ -8,10 +8,6 @@ Showing the accessibility heatmap and candidate list.
 - [Chen Xi @iamcxnoguigan](github.com/iamcxnoguigan)
 - [Mao Chengtian @luvletter](github.com/luvletter)
 
-## Diagram
-
-![dataflow](image/ASEDataflowFramework.png)
-
 ## Deploy
 ```console
 me@me:~$ git clone https://github.com/AdvancedServicesEngineeringFudan2018/Too-Hard-To-Find-A-Name
@@ -24,7 +20,11 @@ me@me:~/Too-Hard-To-Find-A-Name$ PYTHONPATH=`pwd`/webapp python run.py
  * Debugger PIN: 210-897-547
 ```
 
+## Diagram
+
+![dataflow](image/ASEDataflowFramework.png)
+
 ## More
--   Scenario [Scenario.md](Scenario.md)
--   Quality Of Data [QoD.md](QoD.md)
--   TaskAssignment [TaskAssignment.md](TaskAssignment.md)
+-   Scenario [Scenario.md](doc/Scenario.md)
+-   Quality Of Data [QoD.md](doc/QoD.md)
+-   TaskAssignment [TaskAssignment.md](doc/TaskAssignment.md)

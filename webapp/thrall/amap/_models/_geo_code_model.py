@@ -22,7 +22,7 @@ class GeoCodeRequestParams(BaseRequestParams):
 
     @required_params('address')
     def __init__(self, address=None, city=None, batch=None, **kwargs):
-        """ Amap geo code basic request param, amap document please see:
+        """ Amap geo code basic request param, amap doc please see:
         [geocode](https://lbs.amap.com/api/webservice/guide/api/georegeo)
 
         Note: if `private_key` set, amap_sig will auto add in request params,

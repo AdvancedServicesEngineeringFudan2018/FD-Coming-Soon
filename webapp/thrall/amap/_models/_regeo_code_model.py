@@ -29,7 +29,7 @@ class ReGeoCodeRequestParams(BaseRequestParams):
     @required_params('location')
     def __init__(self, location=None, radius=None, extensions=None,
                  batch=None, **kwargs):
-        """ Amap re geo code basic request param, amap document see:
+        """ Amap re geo code basic request param, amap doc see:
         [re_geocode](http://lbs.amap.com/api/webservice/guide/api/georegeo)
 
         re_geo extensions optional params:
