@@ -63,7 +63,7 @@ Create the heatmap for every Shanghai University.
 
 ### Section 2 : Third-Party Data
 
-1. ~~Swarm API: both frontend and backend~~ (**canceled because this API is disabled**)
+1. Swarm API: both frontend and backend
 2. find PoI using Meituan.
 
 ### Section 3 : More features if possible
