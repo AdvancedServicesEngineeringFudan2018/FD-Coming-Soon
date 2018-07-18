@@ -37,17 +37,17 @@
                     const dis = 300;
                     const earthR = 6371.137;
                     let x1 = centerX,
-                        y1 = (centerY + dis / earthR),
-                        x2 = centerX + dis * Math.sin(Math.PI * 60 / 180) / earthR,
-                        y2 = centerY + dis * Math.cos(Math.PI * 60 / 180) / earthR,
-                        x3 = centerX + dis * Math.sin(Math.PI * 60 / 180) / earthR,
-                        y3 = centerY - dis * Math.cos(Math.PI * 60 / 180) / earthR,
+                        y1 = (centerY + 180 * (dis / earthR) / Math.PI),
+                        x2 = centerX + 180 * dis * Math.sin(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        y2 = centerY + 180 * dis * Math.cos(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        x3 = centerX + 180 * dis * Math.sin(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        y3 = centerY - 180 * dis * Math.cos(Math.PI * 60 / 180) / (earthR * Math.PI),
                         x4 = centerX,
-                        y4 = centerY - dis / earthR,
-                        x5 = centerX - dis * Math.sin(Math.PI * 60 / 180) / earthR,
-                        y5 = centerY - dis * Math.cos(Math.PI * 60 / 180) / earthR,
-                        x6 = centerX - dis * Math.sin(Math.PI * 60 / 180) / earthR,
-                        y6 = centerY + dis * Math.cos(Math.PI * 60 / 180) / earthR;
+                        y4 = centerY - 180 * (dis / earthR) / Math.PI,
+                        x5 = centerX - 180 * dis * Math.sin(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        y5 = centerY - 180 * dis * Math.cos(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        x6 = centerX - 180 * dis * Math.sin(Math.PI * 60 / 180) / (earthR * Math.PI),
+                        y6 = centerY + 180 * dis * Math.cos(Math.PI * 60 / 180) / (earthR * Math.PI);
                     let arr = [[x1, y1], [x2, y2], [x3, y3], [x4, y4], [x5, y5], [x6, y6]];
                     let polygon = new AMap.Polygon({
                         path: arr,
