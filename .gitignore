@@ -32,3 +32,5 @@ secret.py
 log
 *.log
 .idea/
+node_modules/
+package-lock.json
