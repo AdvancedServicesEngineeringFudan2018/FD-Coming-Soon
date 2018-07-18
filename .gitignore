@@ -29,6 +29,7 @@ secret.py
 
 # vscode
 .vs/
+.vscode/
 log
 *.log
 .idea/
