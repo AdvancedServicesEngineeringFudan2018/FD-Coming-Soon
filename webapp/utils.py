@@ -46,7 +46,7 @@ class Point:
 
 
 class Cell:
-    CELL_RADIUS = 3.0
+    CELL_RADIUS = 1.0
     CENTER_TO_EDGE = math.sqrt(3)
 
     def __init__(self, center_point=Point(), radius=CELL_RADIUS, color="red"):

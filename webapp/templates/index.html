@@ -34,7 +34,7 @@
                 for (let i = 0; i < centers.length; i++) {
                     let centerX = centers[i][0];
                     let centerY = centers[i][1];
-                    const dis = 300;
+                    const dis = 1;
                     const earthR = 6371.137;
                     let x1 = centerX,
                         y1 = (centerY + 180 * (dis / earthR) / Math.PI),
@@ -58,12 +58,6 @@
                         fillOpacity: 0.35
                     });
                     map.add(polygon);
-                    /*
-                    let time = 30;
-                    polygon.on('click', function (e) {
-                        alert('You click circle you can arrive in ' + time + 'min .Longitude and latitude:[ ' + e.lnglat.getLng() + ',' + e.lnglat.getLat() + ' ]');
-                    });
-                    */
                 }
             },'json');
     });
