@@ -21,9 +21,9 @@ me@me:~/Too-Hard-To-Find-A-Name$ PYTHONPATH=`pwd`/webapp python run.py
 ```
 ## Component
 
-** View ** Mapbox
-** Model ** Gaode API/Swarm
-** Controller ** Tornado
+**View** Mapbox
+**Model** Gaode API/Swarm
+**Controller** Tornado
 
 
 ## Diagram
