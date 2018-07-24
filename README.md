@@ -19,6 +19,12 @@ me@me:~/Too-Hard-To-Find-A-Name$ PYTHONPATH=`pwd`/webapp python run.py
  * Debugger is active!
  * Debugger PIN: 210-897-547
 ```
+## Component
+
+** View ** Mapbox
+** Model ** Gaode API/Swarm
+** Controller ** Tornado
+
 
 ## Diagram
 
